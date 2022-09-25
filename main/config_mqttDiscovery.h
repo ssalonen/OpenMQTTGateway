@@ -43,6 +43,13 @@ extern void createDiscovery(char* sensor_type,
 
 #define DEVICEMANUFACTURER "OMG_community"
 
+// discovery_republish_on_reconnect false to publish discovery topics over MQTT only with first connect
+// discovery_republish_on_reconnect true to always republish discovery topics over MQTT when connection is re-established
+#ifndef discovery_republish_on_reconnect
+#  define discovery_republish_on_reconnect false
+#endif
+
+
 /*-------------- Auto discovery macros-----------------*/
 // Set the line below to true so as to have autodiscovery working with OpenHAB
 #define OpenHABDiscovery false
