@@ -13,7 +13,7 @@ deploy1: build1
 	firmware=esp32dev-ble-cont-openhab_id1-SERIAL ; \
 	scp .pio/build/$${firmware}/firmware.bin pi@$(OTA_HOP_IP):$${firmware}_firmware.bin; \
 	ssh pi@$(OTA_HOP_IP) '[ ! -f espota.py ]' \
-		&& scp ~/.platformio/packages/framework-arduinoespressif8266/tools/espota.py pi@$(OTA_HOP_IP): || :; \
+		&& scp ~/.platformio/packages/framework-arduinoespressif8266/tools/espota.py pi@$(OTA_HOP_IP): || : ; \
 	ssh pi@$(OTA_HOP_IP) python3 espota.py \
 		--ip=$(OTA_IP1) \
 		--port=8266 \
