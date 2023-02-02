@@ -1,7 +1,7 @@
-OTA_IP1=$(shell grep ota_ip1 secrets_env.ini |cut -d'=' -f2)
-OTA_IP2=$(shell grep ota_ip2 secrets_env.ini |cut -d'=' -f2)
-OTA_HOP_IP=$(shell grep ota_hop_ip secrets_env.ini |cut -d'=' -f2)
-OTA_PASSWORD=$(shell grep ota_password secrets_env.ini |cut -d'=' -f2)
+OTA_IP1=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_ip1  |cut -d'=' -f2)
+OTA_IP2=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_ip2  |cut -d'=' -f2)
+OTA_HOP_IP=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_hop_ip  |cut -d'=' -f2)
+OTA_PASSWORD=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password  |cut -d'=' -f2)
 
 
 .PHONY: build1
