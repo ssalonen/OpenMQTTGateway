@@ -3,11 +3,9 @@ OTA_IP2=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ot
 OTA_HOP_IP=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_hop_ip  |cut -d'=' -f2)
 OTA_PASSWORD_FOR_UPLOAD1=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password_for_upload1  |cut -d'=' -f2)
 OTA_PASSWORD_FOR_UPLOAD2=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password_for_upload2  |cut -d'=' -f2)
-OMG_VERSION=$(git rev-parse --short HEAD)
 
 .PHONY: build1
 build1:
-	export OMG_VERSION=$(OMG_VERSION) ; \
 	~/.platformio/penv/bin/platformio run --environment esp32dev-ble-cont-openhab_id1-SERIAL
 
 .PHONY: deploy1
@@ -28,7 +26,6 @@ deploy1: build1
 
 .PHONY: build2
 build2:
-	export OMG_VERSION=$(OMG_VERSION) ; \
 	~/.platformio/penv/bin/platformio run --environment esp32dev-ble-cont-openhab_id2-SERIAL
 
 .PHONY: deploy2
