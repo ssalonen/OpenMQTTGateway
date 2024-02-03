@@ -1,5 +1,4 @@
 !ble_scanner_cont_openhab_env.ini
-!build_info_env.ini
 .pio
 .vscode
 *_env.ini
@@ -10,3 +9,4 @@ node_modules
 main/certs/private*
 lib/*
 !lib/esp32-bt-lib
+!/build_info_env.ini
