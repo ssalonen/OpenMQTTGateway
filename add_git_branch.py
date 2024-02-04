@@ -4,9 +4,10 @@ import datetime
 
 import subprocess
 
-def make_version_header():
+def populate_version_info():
     now = datetime.datetime.now()
-    # dont track changes to the output file
+    
+    # dont track changesto the output file
     subprocess.run(["git", "update-index", "--skip-worktree", "build_info_env.ini"])
 
     build_version = now.strftime("%y-%m-%d")
@@ -27,4 +28,4 @@ def make_version_header():
         f.write("# regenerated at %s\n\n" % now)
         f.write("[build_info]\ncommit_info = " + build_version + "\n\n")
 
-make_version_header()
+populate_version_info()
