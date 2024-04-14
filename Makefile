@@ -1,7 +1,8 @@
 OTA_IP1=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_ip1  |cut -d'=' -f2)
 OTA_IP2=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_ip2  |cut -d'=' -f2)
 OTA_HOP_IP=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_hop_ip  |cut -d'=' -f2)
-OTA_PASSWORD=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password  |cut -d'=' -f2)
+OTA_PASSWORD1=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password_for_upload1  |cut -d'=' -f2)
+OTA_PASSWORD2=$(shell grep -F '[secrets]' -A50 secrets_env.ini | grep --max-count=1 ota_password_for_upload2  |cut -d'=' -f2)
 
 
 .PHONY: build1
@@ -18,7 +19,7 @@ deploy1: build1
 		--ip=$(OTA_IP1) \
 		--port=8266 \
 		--host_port=10001 \
-		--auth=${OTA_PASSWORD} \
+		--auth=${OTA_PASSWORD1} \
 		--file=$${firmware}_firmware.bin \
 		--debug \
 		--progress
@@ -38,7 +39,7 @@ deploy2: build2
 		--ip=$(OTA_IP2) \
 		--port=8266 \
 		--host_port=10001 \
-		--auth=${OTA_PASSWORD} \
+		--auth=${OTA_PASSWORD2} \
 		--file=$${firmware}_firmware.bin \
 		--debug \
 		--progress
