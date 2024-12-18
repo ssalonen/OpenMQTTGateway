@@ -388,10 +388,16 @@ void createOrUpdateDevice(const char* mac, uint8_t flags, int model, int mac_typ
       device->connect = true;
     }
 
-    if (model != UNKWNON_MODEL) {
+    if (model != UNKWNON_MODEL && device->sensorModel_id == UNKWNON_MODEL) {
+      newDevices++;
+      device->isDisc = false;
       device->sensorModel_id = model;
     }
 
+    // If a device has been added to the white-list, flag it so it can be auto-detected
+    if (!device->isWhtL && flags & device_flags_isWhiteL) {
+      newDevices++;
+    }
     if (flags & device_flags_isWhiteL || flags & device_flags_isBlackL) {
       device->isWhtL = flags & device_flags_isWhiteL;
       device->isBlkL = flags & device_flags_isBlackL;
